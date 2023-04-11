@@ -25,13 +25,13 @@
                 <div class="card card-widget widget-user">
                     <div class="row">
                         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                            <img style="width: 65%; display:block; margin-left:450px;" src="../img/logo/logo-toefl.png" alt="photo" id="logo-toep">
+                            <img style="width: 65%; display:block; margin-left:450px;" src="../img/logo/logo-ubipaunj.png" alt="photo" id="logo-toep">
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                            <img style="width: 65%; display:block; margin-left:450px;" src="../img/desctoefl.png" alt="" id="logo-toep">
+                            <img style="width: 65%; display:block; margin-left:450px;" src="../img/descubipa.png" alt="" id="logo-toep">
                         </div>
                     </div>
                     <br>

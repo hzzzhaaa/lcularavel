@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Userinfo;
+use App\Models\UserIdentity;
 use Illuminate\Http\Request;
+use Auth;
+use Alert;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        //$this->middleware("admin");
+		$this->middleware("isLogin");
+    }
     /**
      * Display a listing of the resource.
      *
@@ -21,9 +29,30 @@ class UserController extends Controller
         // dd($nama);
         $userinfo = Userinfo::where('user_id',$nama)->first();
         $userinfo = json_decode($userinfo);
+        $ktp = UserIdentity::where('user_id',$nama)->first();
+        $ktp = json_decode($ktp);
+        // dd($ktp);
         // dd($userinfo);
         // $userinfo = $userinfo['0'];
-        return view("pages/mahasiswa/home",["data"=>$userinfo]);
+        return view("pages/mahasiswa/home",["data"=>$userinfo,"ktp"=>$ktp]);
+    }
+
+    public function upload_user_identity(Request $request)
+    {
+        $ktp = $request->ktp;
+        $resp = $request->session()->all();
+        $userid = $resp['user_id'];
+
+        $imageName = 'ktp'.$userid.'.'.'jpg';
+        $uploadedImage = $request->ktp->move(public_path('img/ktp_user'), $imageName);
+        $imagePath = 'img/ktp_user/' . $imageName;
+        $u = UserIdentity::create([
+            'user_id'=>$userid,
+            'img_info'=>$imagePath,
+            'status'=>"requested"
+        ]);
+        Alert::success('Congrats', 'KTP Kamu Sudah Terupload');
+        return redirect()->route('profile');
     }
 
     /**

@@ -1,5 +1,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<meta name="csrf-token" content="{{csrf_token()}}">
 <title>Language Center UNJ</title>
 
 <!-- Google Font: Source Sans Pro -->

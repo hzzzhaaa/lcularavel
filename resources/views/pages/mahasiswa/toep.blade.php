@@ -65,29 +65,136 @@
                 <div class="modal-dialog">
                 <div class="modal-content bg-light">
                     <div class="modal-header">
-                    <h4 class="modal-title">Login Umum</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
+                        <h4 class="modal-title">TOEP REGULER</h4>
                     </div>
                     <div class="modal-body">
-                        <form>
-                            <div class="card-body">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Username</label>
-                                <input type="username" class="form-control" id="exampleInputusername1" placeholder="Enter username">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Remember me</label>
-                            </div>
-                            </div>
-                            <!-- /.card-body -->
+                        <form method="post" action="{{ route('pendaftaran') }}">
+                            @csrf
+                            @if ($data->nim==null)
+                                @if ($useridentity==null)
+                                <fieldset>
+                                    <div class="form-group" id="1">
+                                        <p style="font-size: medium; font-weight: bold">
+                                            Anda belum upload kartu identitas, klik untuk <a href="{{route('profile')}}">upload kartu identitas</a></p>
+                                    </div>
+                                </fieldset>
+                                @elseif ($useridentity->status=="requested")
+                                    <fieldset>
+                                        <input type="text" name="event" value="1" hidden>
+                                        <input type="text" name="name" value="2" hidden>
+                                        <div class="form-group">
+                                            <label for="disabledTextInput">Pilih Tipe Test</label>
+                                            <select class="form-control" id="1" name="type" required>
+                                                <option selected disabled>Pilih Tipe Test
+                                                </option>
+                                                <option>Paper Based Test
+                                                </option>
+                                                <option>Computer Based Test
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group" id="1">
+                                            <p style="font-size: medium; font-weight: bold">
+                                                Deskripsi</p>
+                                        </div>
+                                        <div class="form-group" id="">
+                                            <label for="disabledTextInput">Pilih Tipe Test</label>
+                                            <input type="radio" name="site" id="On Site" value="On Site">
+                                            <label for="On Site">Onsite</label><br>
+                                            <input type="radio" name="site" id="Online" value="Online">
+                                            <label for="Online">Online</label><br>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="disabledTextInput">Metode Pembayaran</label>
+                                            <select class="form-control" id="paymentmethod" name="paymentmethod">
+                                                <option selected disabled>
+                                                    Pilih Metode Pembayaran
+                                                </option>
+                                                    <option value="1">
+                                                        BNI
+                                                    </option>
+                                            </select>
+                                        </div>
+                                    </fieldset>
+                                    @elseif ($useridentity->status=="verified")
+                                    <fieldset>
+                                        <input type="text" name="event" value="1" hidden>
+                                        <input type="text" name="name" value="2" hidden>
+                                        <div class="form-group">
+                                            <label for="disabledTextInput">Pilih Tipe Test</label>
+                                            <select class="form-control" id="1" name="type" required>
+                                                <option selected disabled>Pilih Tipe Test
+                                                </option>
+                                                <option>Paper Based Test
+                                                </option>
+                                                <option>Computer Based Test
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group" id="1">
+                                            <p style="font-size: medium; font-weight: bold">
+                                                Deskripsi</p>
+                                        </div>
+                                        <div class="form-group" id="">
+                                            <label for="disabledTextInput">Pilih Tipe Test</label>
+                                            <input type="radio" name="site" id="On Site" value="On Site">
+                                            <label for="On Site">Onsite</label><br>
+                                            <input type="radio" name="site" id="Online" value="Online">
+                                            <label for="Online">Online</label><br>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="disabledTextInput">Metode Pembayaran</label>
+                                            <select class="form-control" id="paymentmethod" name="paymentmethod">
+                                                <option selected disabled>
+                                                    Pilih Metode Pembayaran
+                                                </option>
+                                                    <option value="1">
+                                                        BNI
+                                                    </option>
+                                            </select>
+                                        </div>
+                                    </fieldset>
+                                @endif
 
+                            @else
+                                <fieldset>
+                                    <input type="text" name="event" value="1" hidden>
+                                    <input type="text" name="name" value="2" hidden>
+                                    <div class="form-group">
+                                        <label for="disabledTextInput">Pilih Tipe Test</label>
+                                        <select class="form-control" id="1" name="type" required>
+                                            <option selected disabled>Pilih Tipe Test
+                                            </option>
+                                            <option>Paper Based Test
+                                            </option>
+                                            <option>Computer Based Test
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group" id="1">
+                                        <p style="font-size: medium; font-weight: bold">
+                                            Deskripsi</p>
+                                    </div>
+                                    <div class="form-group" id="">
+                                        <label for="disabledTextInput">Pilih Tipe Test</label>
+                                        <input type="radio" name="site" id="On Site" value="On Site">
+                                        <label for="On Site">Onsite</label><br>
+                                        <input type="radio" name="site" id="Online" value="Online">
+                                        <label for="Online">Online</label><br>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="disabledTextInput">Metode Pembayaran</label>
+                                        <select class="form-control" id="paymentmethod" name="paymentmethod">
+                                            <option selected disabled>
+                                                Pilih Metode Pembayaran
+                                            </option>
+                                                <option value="1">
+                                                    BNI
+                                                </option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                            @endif
                     </div>
                     <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
@@ -106,44 +213,133 @@
                         <h4 class="modal-title">TOEP REGULER</h4>
                     </div>
                     <div class="modal-body">
-                        <form method="post" action="">
-                            <fieldset>
-                                <input type="text" name="event" value="1" hidden>
-                                <input type="text" name="name" value="2" hidden>
-                                <div class="form-group">
-                                    <label for="disabledTextInput">Pilih Tipe Test</label>
-                                    <select class="form-control" id="1" name="type" required>
-                                        <option selected disabled>Pilih Tipe Test
-                                        </option>
-                                        <option>Paper Based Test
-                                        </option>
-                                        <option>Computer Based Test
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="form-group" id="1">
-                                    <p style="font-size: medium; font-weight: bold">
-                                        Deskripsi</p>
-                                </div>
-                                <div class="form-group" id="">
-                                    <label for="disabledTextInput">Pilih Tipe Test</label>
-                                    <input type="radio" name="site" id="On Site" value="On Site">
-                                    <label for="On Site">Onsite</label><br>
-                                    <input type="radio" name="site" id="Online" value="Online">
-                                    <label for="Online">Online</label><br>
-                                </div>
-                                <div class="form-group">
-                                    <label for="disabledTextInput">Metode Pembayaran</label>
-                                    <select class="form-control" id="paymentmethod" name="paymentmethod">
-                                        <option selected disabled>
-                                            Pilih Metode Pembayaran
-                                        </option>
-                                            <option value="1">
-                                                BNI
+                        <form method="post" action="pendaftaran">
+                            @csrf
+                            @if ($data->nim==null)
+                                @if ($useridentity==null)
+                                <fieldset>
+                                    <div class="form-group" id="1">
+                                        <p style="font-size: medium; font-weight: bold">
+                                            Anda belum upload kartu identitas, klik untuk <a href="{{route('profile')}}">upload kartu identitas</a></p>
+                                    </div>
+                                </fieldset>
+                                @elseif ($useridentity->status=="requested")
+                                    <fieldset>
+                                        <input type="text" name="event" value="1" hidden>
+                                        <input type="text" name="name" value="2" hidden>
+                                        <div class="form-group">
+                                            <label for="disabledTextInput">Pilih Tipe Test</label>
+                                            <select class="form-control" id="1" name="type" required>
+                                                <option selected disabled>Pilih Tipe Test
+                                                </option>
+                                                <option>Paper Based Test
+                                                </option>
+                                                <option>Computer Based Test
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group" id="1">
+                                            <p style="font-size: medium; font-weight: bold">
+                                                Deskripsi</p>
+                                        </div>
+                                        <div class="form-group" id="">
+                                            <label for="disabledTextInput">Pilih Tipe Test</label>
+                                            <input type="radio" name="site" id="On Site" value="On Site">
+                                            <label for="On Site">Onsite</label><br>
+                                            <input type="radio" name="site" id="Online" value="Online">
+                                            <label for="Online">Online</label><br>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="disabledTextInput">Metode Pembayaran</label>
+                                            <select class="form-control" id="paymentmethod" name="paymentmethod">
+                                                <option selected disabled>
+                                                    Pilih Metode Pembayaran
+                                                </option>
+                                                    <option value="1">
+                                                        BNI
+                                                    </option>
+                                            </select>
+                                        </div>
+                                    </fieldset>
+                                    @elseif ($useridentity->status=="verified")
+                                    <fieldset>
+                                        <input type="text" name="event" value="1" hidden>
+                                        <input type="text" name="name" value="2" hidden>
+                                        <div class="form-group">
+                                            <label for="disabledTextInput">Pilih Tipe Test</label>
+                                            <select class="form-control" id="1" name="type" required>
+                                                <option selected disabled>Pilih Tipe Test
+                                                </option>
+                                                <option>Paper Based Test
+                                                </option>
+                                                <option>Computer Based Test
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group" id="1">
+                                            <p style="font-size: medium; font-weight: bold">
+                                                Deskripsi</p>
+                                        </div>
+                                        <div class="form-group" id="">
+                                            <label for="disabledTextInput">Pilih Tipe Test</label>
+                                            <input type="radio" name="site" id="On Site" value="On Site">
+                                            <label for="On Site">Onsite</label><br>
+                                            <input type="radio" name="site" id="Online" value="Online">
+                                            <label for="Online">Online</label><br>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="disabledTextInput">Metode Pembayaran</label>
+                                            <select class="form-control" id="paymentmethod" name="paymentmethod">
+                                                <option selected disabled>
+                                                    Pilih Metode Pembayaran
+                                                </option>
+                                                    <option value="1">
+                                                        BNI
+                                                    </option>
+                                            </select>
+                                        </div>
+                                    </fieldset>
+                                @endif
+
+                            @else
+                                <fieldset>
+                                    <input type="text" name="event" value="1" hidden>
+                                    <input type="text" name="name" value="2" hidden>
+                                    <div class="form-group">
+                                        <label for="disabledTextInput">Pilih Tipe Test</label>
+                                        <select class="form-control" id="1" name="type" required>
+                                            <option selected disabled>Pilih Tipe Test
                                             </option>
-                                    </select>
-                                </div>
-                            </fieldset>
+                                            <option>Paper Based Test
+                                            </option>
+                                            <option>Computer Based Test
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group" id="1">
+                                        <p style="font-size: medium; font-weight: bold">
+                                            Deskripsi</p>
+                                    </div>
+                                    <div class="form-group" id="">
+                                        <label for="disabledTextInput">Pilih Tipe Test</label>
+                                        <input type="radio" name="site" id="On Site" value="On Site">
+                                        <label for="On Site">Onsite</label><br>
+                                        <input type="radio" name="site" id="Online" value="Online">
+                                        <label for="Online">Online</label><br>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="disabledTextInput">Metode Pembayaran</label>
+                                        <select class="form-control" id="paymentmethod" name="paymentmethod">
+                                            <option selected disabled>
+                                                Pilih Metode Pembayaran
+                                            </option>
+                                                <option value="1">
+                                                    BNI
+                                                </option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                            @endif
                     </div>
                     <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>

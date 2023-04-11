@@ -61,9 +61,6 @@ class AuthController extends Controller
 
     public function inputInfo(Request $request){
 
-
-
-
         $resp = $request->session()->all();
 
         // dd($resp['user_id']);
@@ -194,12 +191,22 @@ class AuthController extends Controller
 
             $request->session()->regenerate();
             $resp = $request->session()->all();
+            // dd($resp);
             return redirect()->route('profile');
-            if(!$token) return response()->json([
-                'message'=> 'Username atau Password salah',
-                'status'=>$response->status
-            ], 401);
+            // if(!$token) return response()->json([
+            //     'message'=> 'Username atau Password salah',
+            //     'status'=>$response->status
+            // ], 401);
         }
+    }
+    protected function authenticated(Request $request, $user)
+    {
+        //
+    }
+
+    protected function guard()
+    {
+        return Auth::guard();
     }
 
     /**
@@ -217,9 +224,9 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function logout()
+    public function logout(Request $request)
     {
-        auth()->logout();
+        $request->session()->flush();
 
 
         return redirect()->route('home');

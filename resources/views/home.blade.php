@@ -49,21 +49,23 @@
                         <form class="login-form" method="POST" action="{{ route('loginUmum') }}">
                             @csrf
                             <div class="card-body">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Username</label>
-                                <input type="username" name="username" class="form-control" id="exampleInputusername1" placeholder="Enter username">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Remember me</label>
-                            </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Username</label>
+                                    <input type="username" name="username" class="form-control" id="exampleInputusername1" placeholder="Enter username">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Password</label>
+                                    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                                </div>
+                                <div class="form-group">
+                                    <a>Belum punya akun? daftar akun </a><a href="{{route('register')}}"> disini</a>
+                                </div>
                             </div>
                             <!-- /.card-body -->
-
                     </div>
                     <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
@@ -79,7 +81,7 @@
                 <div class="modal-dialog">
                 <div class="modal-content bg-light">
                     <div class="modal-header">
-                    <h4 class="modal-title">Login Mahasiswa</h4>
+                    <h4 class="modal-title">Login Siakad</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
