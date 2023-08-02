@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Userinfo;
 use App\Models\UserIdentity;
+use App\Models\Registration;
+use App\Models\Event;
+use App\Models\EventSchedule;
+use App\Models\PaymentMethod;
 use Illuminate\Http\Request;
 use Auth;
 use Alert;
@@ -53,6 +57,45 @@ class UserController extends Controller
         ]);
         Alert::success('Congrats', 'KTP Kamu Sudah Terupload');
         return redirect()->route('profile');
+    }
+
+
+    public function schedule(Request $request)
+    {
+        // $eventschedule = EventSchedule::where("event_id")
+        $resp = $request->session()->all();
+        $userid = $resp['user_id'];
+        $schedule = Registration::where("user_id",$userid)->get();
+        $schedule_list = null;
+
+        foreach($schedule as $s)
+        {
+            $s->event_id = Event::where("id",$s->event_id)->first();
+            $s->schedule_id = EventSchedule::where("id",$s->schedule_id)->first();
+            $s->paymentmethod_id = PaymentMethod::where("id",$s->paymentmethod_id)->first();
+            $s->schedule_list = EventSchedule::where('event_id',$s->event_id->id)->get();
+            foreach($s->schedule_list as $list){
+                $list->event_id =Event::where("id",$list->event_id)->first();
+            }
+        }
+
+        // if($schedule->event_id->type=="Express")
+        // {
+        //     $schedule_list =EventSchedule::where("event_id",[3,4])->get();
+        // }else{
+        //     $schedule_list =EventSchedule::where("event_id",[1,2])->get();
+        // }
+        // $schedule_list = EventSchedule::all();
+        // foreach ($schedule_list as $list)
+        // {
+        //     $list->event_id = Event::where("id",$list->event_id)->first();
+        // }
+        // $schedule_list = json_decode($schedule_list);
+        // // dd($schedule_list);
+        // $schedule = json_decode($schedule);
+        // dd($schedule);
+
+        return view("pages/mahasiswa/schedule",["data"=>$schedule]);
     }
 
     /**

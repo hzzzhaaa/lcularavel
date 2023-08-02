@@ -17,12 +17,13 @@ class CreateRegistrationTables extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('event_id');
+            $table->string('event_name');
             $table->unsignedBigInteger('schedule_id')->nullable();
             $table->unsignedBigInteger('paymentmethod_id');
             $table->string('registration_number')->nullable();
-            $table->enum('status', ['requested', 'verified'])->default('requested');
+            $table->enum('status', ['requested','uploaded', 'verified','registered'])->default('requested');
             $table->string("site");
-            $table->string("payment_evidence_img");
+            $table->string("payment_evidence_img")->nullable();
             $table->enum('payment_status',['belum lunas','lunas'])->default('belum lunas');
             $table->timestamps();
         });

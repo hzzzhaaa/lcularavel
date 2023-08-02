@@ -90,7 +90,7 @@ class AuthController extends Controller
         $nama = $request->nama;
         $email = $request->email;
         $password = $request->password;
-        // dd($request->all());
+
         $u = User::create([
             'name'=>$nama,
             'username'=>$uname,
@@ -113,7 +113,6 @@ class AuthController extends Controller
     {
         $username = $request->username;
         $password = $request->password;
-        // dd($username);
 
         $auth = Http::asForm()->post("http://103.8.12.212:36880/siakad_api/api/as400/signin",[
             'username' => $username,
@@ -121,12 +120,9 @@ class AuthController extends Controller
         ]);
 
         $response = json_decode($auth);
-        // dd($response);
         $account_detail = Http::get("http://103.8.12.212:36880/siakad_api/api/as400/dataMahasiswa/$username/$response->Authorization");
         $acc_detail = json_decode($account_detail);
         $acc_detail = $acc_detail->isi['0'];
-        // dd($acc_detail->email);
-        // dd($response->status);
 
         if($auth->status() == 500){
             return response()->json(['error'=>'Internal Server Error'], 500);
@@ -138,7 +134,6 @@ class AuthController extends Controller
         else $ttl = auth('api')->factory()->getTTL();
         if(User::where('username',$username)->first()==null){
             if($response->mode==9){
-                // dd($response->Authorization);
                 $u = User::create([
                     'name'=>$response->nama,
                     'username'=>$username,
@@ -148,7 +143,6 @@ class AuthController extends Controller
                     'role'=> 1,
                     'is_active'=>1,
                 ]);
-                // dd($u);
             }
             $token = auth('api')->setTTL($ttl)->attempt(['username'=>$username, 'password' => $password]);
             $userid = User::where('username',$username)->get('id');
@@ -191,12 +185,7 @@ class AuthController extends Controller
 
             $request->session()->regenerate();
             $resp = $request->session()->all();
-            // dd($resp);
             return redirect()->route('profile');
-            // if(!$token) return response()->json([
-            //     'message'=> 'Username atau Password salah',
-            //     'status'=>$response->status
-            // ], 401);
         }
     }
     protected function authenticated(Request $request, $user)

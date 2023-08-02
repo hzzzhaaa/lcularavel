@@ -23,10 +23,10 @@ class CreateUserinfosTable extends Migration
             $table->string("no_telp");
             $table->string("jenis_kelamin");
             $table->string("kewarganegaraan");
-            $table->biginteger("nim");
-            $table->string("prodi");
-            $table->string("jenjang");
-            $table->string("angkatan");
+            $table->biginteger("nim")->nullable();
+            $table->string("prodi")->nullable();
+            $table->string("jenjang")->nullable();
+            $table->string("angkatan")->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

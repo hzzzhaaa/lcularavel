@@ -16,7 +16,7 @@
                 Language Test
             </li>
             <li class="nav-item">
-                <a href="/toep" class="nav-link">
+                <a href="{{route("toep")}}" class="nav-link">
                   <p>TOEP</p>
                 </a>
               </li>

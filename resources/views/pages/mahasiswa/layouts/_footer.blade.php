@@ -14,7 +14,7 @@
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
              <li><a class="dropdown-item" href="/profile">Profile</a></li>
-             <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+             <li><a class="dropdown-item" href="{{route("schedule")}}">Activity Log</a></li>
 
              <li>
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

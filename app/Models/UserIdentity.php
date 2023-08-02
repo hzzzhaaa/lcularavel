@@ -14,4 +14,8 @@ class UserIdentity extends Model
         'img_info',
         'status'
     ];
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

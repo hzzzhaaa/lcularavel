@@ -6,12 +6,19 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "barryvdh/laravel-dompdf": "^2.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "intervention/image": "^2.7",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
+        "maatwebsite/excel": "^3.1",
+        "maennchen/zipstream-php": "^2.1",
+        "phpoffice/phpspreadsheet": "^1.28",
         "realrashid/sweet-alert": "^5.1",
+        "setasign/fpdf": "^1.8",
+        "setasign/fpdi": "^2.4",
         "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {
